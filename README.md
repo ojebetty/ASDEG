@@ -9,9 +9,9 @@ Version 2.0: released on June 10th, 2013
 
 Usage: ./ASDEG.sh -p < PATH > [options ... ]
 
-  -p < PATH >  Full path of data directory < EX. ~/SNP0.05_500/data_1M_5_5_0_20 
+  -p < PATH >  Full path of data directory < EX. ~/SNP0.05_500/data_1M_5_5_0_20 >
 
-  -S < PATH >  Full path of script directory < EX.~/SNP0.05_500/data_1M_5_5_0_20>
+  -S < PATH >  Full path of script directory < EX.~/SNP0.05_500/data_1M_5_5_0_20 >
 
   -G < file_name > snp2gene file .
 
