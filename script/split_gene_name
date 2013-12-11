@@ -1,0 +1,36 @@
+#!/bin/bash
+
+
+##### 以基因為單位分割vcf檔案 #####
+
+data_path=$1
+snp2gene=$2
+gene_name_column=$3
+script_path=$4
+output=$5
+trimming_folder=$output/${snp2gene}_new_folder
+
+if [ -d ${trimming_folder} ];then
+
+    rm -r ${trimming_folder}
+    mkdir ${trimming_folder}
+
+else  
+
+     mkdir ${trimming_folder}
+fi
+
+c=`expr ${gene_name_column}`
+
+
+less ${data_path}/${snp2gene} | cut -f 1,2,$c | sed 's/"//g' | sed 's/_/-/g' | sort | uniq > ${trimming_folder}/${snp2gene}_new
+
+gene_name=($(less ${trimming_folder}/${snp2gene}_new | cut -f 3 | grep -v 'name' | sort | uniq))
+total_gene=`less ${trimming_folder}/${snp2gene}_new | cut -f 3 | grep -v 'name' | sort | uniq | wc -l`
+
+for ((i=0; i<$total_gene; i=i+1))
+
+  do
+     less ${trimming_folder}/${snp2gene}_new | grep -w "${gene_name[i]}" > ${trimming_folder}/gene_name_"${gene_name[i]}"
+done
+
